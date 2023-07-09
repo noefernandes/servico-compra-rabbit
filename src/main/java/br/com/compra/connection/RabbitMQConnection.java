@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class RabbitMQConnection {
 
     private static final String NOME_EXCHANGE = "amq.direct";
-    private AmqpAdmin amqpAdmin;
+    private final AmqpAdmin amqpAdmin;
 
     public RabbitMQConnection(AmqpAdmin amqpAdmin) {
         this.amqpAdmin = amqpAdmin;
@@ -35,19 +35,27 @@ public class RabbitMQConnection {
     @PostConstruct
     private void adiciona(){
         Queue filaEstoque = this.fila(RabbitMQConstants.FILA_ESTOQUE);
-        Queue filaPreco = this.fila(RabbitMQConstants.FILA_PRECO);
+        Queue filaNotificacao = this.fila(RabbitMQConstants.FILA_NOTIFICACAO);
+        Queue filaPagamentoRequest = this.fila(RabbitMQConstants.FILA_PAGAMENTO_REQUEST);
+        Queue filaPagamentoResponse = this.fila(RabbitMQConstants.FILA_PAGAMENTO_RESPONSE);
 
         DirectExchange troca = this.trocaDireta();
 
         Binding ligacaoEstoque = this.relacionamento(filaEstoque, troca);
-        Binding ligacaoPreco = this.relacionamento(filaPreco, troca);
+        Binding ligacaoNotificacao = this.relacionamento(filaNotificacao, troca);
+        Binding ligacaoPagamentoRequest = this.relacionamento(filaPagamentoRequest, troca);
+        Binding ligacaoPagamentoResponse = this.relacionamento(filaPagamentoResponse, troca);
 
         this.amqpAdmin.declareQueue(filaEstoque);
-        this.amqpAdmin.declareQueue(filaPreco);
+        this.amqpAdmin.declareQueue(filaNotificacao);
+        this.amqpAdmin.declareQueue(filaPagamentoRequest);
+        this.amqpAdmin.declareQueue(filaPagamentoResponse);
 
         this.amqpAdmin.declareExchange(troca);
 
         this.amqpAdmin.declareBinding(ligacaoEstoque);
-        this.amqpAdmin.declareBinding(ligacaoPreco);
+        this.amqpAdmin.declareBinding(ligacaoNotificacao);
+        this.amqpAdmin.declareBinding(ligacaoPagamentoRequest);
+        this.amqpAdmin.declareBinding(ligacaoPagamentoResponse);
     }
 }
