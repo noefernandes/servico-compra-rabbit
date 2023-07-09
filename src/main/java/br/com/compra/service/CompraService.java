@@ -35,6 +35,11 @@ public class CompraService {
         EstoqueRequest estoqueRequest = new EstoqueRequest();
         estoqueRequest.setIdProduto(compra.getIdProduto());
         estoqueRequest.setQuantidade(compra.getQuantidade());
+
+        if(estoqueRequest.getQuantidade() < 1) {
+            throw new RuntimeException("Solicite uma quantidade de itens maior do que 0.");
+        }
+
         EstoqueResponse estoqueResponse = acessarEstoque(estoqueRequest);
 
         if(estoqueResponse.getQuantidade() < estoqueRequest.getQuantidade()){
@@ -48,7 +53,8 @@ public class CompraService {
 
         enviarNotificacao(PAGAMENTO_PENDENTE);
 
-        PagamentoRequest pagamentoRequest = new PagamentoRequest(compraSalva.getId(),"12345678910", "06", "2028", 3, compra.getTotalCompra());
+        PagamentoRequest pagamentoRequest = new PagamentoRequest(compraSalva.getId(),"12345678910",
+                "06", "2028", compra.getNumeroParcelas(), compra.getTotalCompra());
         solicitarPagamento(pagamentoRequest);
 
         return compraSalva;
