@@ -96,6 +96,7 @@ public class CompraService {
     @RabbitListener(queues = RabbitMQConstants.FILA_PAGAMENTO_RESPONSE)
     private void aguardarPagamento(String pagamento) throws JsonProcessingException {
         PagamentoResponse pagamentoResponse = objectMapper.readValue(pagamento, PagamentoResponse.class);
+
         Optional<Compra> compraOp = compraRepository.findById(pagamentoResponse.getIdCompra());
 
         Compra compra;
