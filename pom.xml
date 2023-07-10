@@ -68,6 +68,8 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!-- Definindo nome do jar -->
+        <finalName>servico-compra-rabbit</finalName>
     </build>
 
 </project>
