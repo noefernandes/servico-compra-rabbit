@@ -33,12 +33,12 @@ jobs:
 
     - name: Configure environment variables
       run: |
-        sed -i "s|{{DB_IP}}|${{ secrets.DB_IP }}|g" application.properties
-        sed -i "s|{{DB_USER}}|${{ secrets.DB_USER }}|g" application.properties
-        sed -i "s|{{DB_PASS}}|${{ secrets.DB_PASS }}|g" application.properties
-        sed -i "s|{{RABBIT_IP}}|${{ secrets.RABBIT_IP }}|g" application.properties
-        sed -i "s|{{RABBIT_USER}}|${{ secrets.RABBIT_USER }}|g" application.properties
-        sed -i "s|{{RABBIT_PASS}}|${{ secrets.RABBIT_PASS }}|g" application.properties
+        sed -i "s|{{DB_IP}}|${{ secrets.DB_IP }}|g" ./src/main/resources/application.properties
+        sed -i "s|{{DB_USER}}|${{ secrets.DB_USER }}|g" ./src/main/resources/application.properties
+        sed -i "s|{{DB_PASS}}|${{ secrets.DB_PASS }}|g" ./src/main/resources/application.properties
+        sed -i "s|{{RABBIT_IP}}|${{ secrets.RABBIT_IP }}|g" ./src/main/resources/application.properties
+        sed -i "s|{{RABBIT_USER}}|${{ secrets.RABBIT_USER }}|g" ./src/main/resources/application.properties
+        sed -i "s|{{RABBIT_PASS}}|${{ secrets.RABBIT_PASS }}|g" ./src/main/resources/application.properties
 
     - name: Build with Maven
       run: mvn clean install
