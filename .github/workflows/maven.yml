@@ -20,6 +20,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Configure environment variables
+      run: |
+        sed -i "s|{{DB_IP}}|${{ secrets.DB_IP }}|g" application.properties
+        sed -i "s|{{DB_USER}}|${{ secrets.DB_USER }}|g" application.properties
+        sed -i "s|{{DB_PASS}}|${{ secrets.DB_PASS }}|g" application.properties
+        sed -i "s|{{RABBIT_IP}}|${{ secrets.RABBIT_IP }}|g" application.properties
+        sed -i "s|{{RABBIT_USER}}|${{ secrets.RABBIT_USER }}|g" application.properties
+        sed -i "s|{{RABBIT_PASS}}|${{ secrets.RABBIT_PASS }}|g" application.properties
+
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
