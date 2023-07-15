@@ -39,7 +39,7 @@ jobs:
         run: mvn clean install -Dspring.data.mongodb.uri="mongodb://${DB_USER}:${DB_PASS}@${DB_IP}:27017/compras?authSource=admin" -Dspring.rabbitmq.host="${RABBIT_IP}" -Dspring.rabbitmq.port=5672 -Dspring.rabbitmq.username="${RABBIT_USER}" -Dspring.rabbitmq.password="${RABBIT_PASS}"
 
       - name: Run test
-        run: mvn test
+        run: mvn test -Dspring.data.mongodb.uri="mongodb://${DB_USER}:${DB_PASS}@${DB_IP}:27017/compras?authSource=admin" -Dspring.rabbitmq.host="${RABBIT_IP}" -Dspring.rabbitmq.port=5672 -Dspring.rabbitmq.username="${RABBIT_USER}" -Dspring.rabbitmq.password="${RABBIT_PASS}"
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
