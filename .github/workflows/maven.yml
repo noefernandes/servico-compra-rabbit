@@ -20,33 +20,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: Configure environment variables and build
-      env:
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASS: ${{ secrets.DB_PASS }}
-        DB_IP: ${{ secrets.DB_IP }}
-        RABBIT_IP: ${{ secrets.RABBIT_IP }}
-        RABBIT_USER: ${{ secrets.RABBIT_USER }}
-        RABBIT_PASS: ${{ secrets.RABBIT_PASS }}
-      run: mvn clean install -Dspring.data.mongodb.uri="mongodb://${DB_USER}:${DB_PASS}@${DB_IP}:27017/compras?authSource=admin" -Dspring.rabbitmq.host="${RABBIT_IP}" -Dspring.rabbitmq.port=5672 -Dspring.rabbitmq.username="${RABBIT_USER}" -Dspring.rabbitmq.password="${RABBIT_PASS}"
+      - name: Configure environment variables and build
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          DB_IP: ${{ secrets.DB_IP }}
+          RABBIT_IP: ${{ secrets.RABBIT_IP }}
+          RABBIT_USER: ${{ secrets.RABBIT_USER }}
+          RABBIT_PASS: ${{ secrets.RABBIT_PASS }}
+        run: mvn clean install -Dspring.data.mongodb.uri="mongodb://${DB_USER}:${DB_PASS}@${DB_IP}:27017/compras?authSource=admin" -Dspring.rabbitmq.host="${RABBIT_IP}" -Dspring.rabbitmq.port=5672 -Dspring.rabbitmq.username="${RABBIT_USER}" -Dspring.rabbitmq.password="${RABBIT_PASS}"
 
-    - name: Run test
-      run: mvn test
+      - name: Run test
+        run: mvn test
 
-    - name: Build & push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v5
-      with:
-        image: noefernandes/servico-compra-rabbit
-        tags: latest
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: noefernandes/servico-compra-rabbit
+          tags: latest
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
