@@ -55,8 +55,6 @@ jobs:
 
       - name: Run tests
         run: |
-            ls
-            cd my-app
             mvn test
 
     needs: build
