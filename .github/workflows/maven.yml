@@ -38,12 +38,25 @@ jobs:
         RABBIT_PASS: ${{ secrets.RABBIT_PASS }}
       run: mvn clean install -Dspring.data.mongodb.uri="mongodb://${DB_USER}:${DB_PASS}@${DB_IP}:27017/compras?authSource=admin" -Dspring.rabbitmq.host="${RABBIT_IP}" -Dspring.rabbitmq.port=5672 -Dspring.rabbitmq.username="${RABBIT_USER}" -Dspring.rabbitmq.password="${RABBIT_PASS}"
 
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-app
+        path: .
+
   test:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-app
+
       - name: Run tests
-        run: mvn test
+        run: |
+            cd my-app
+            mvn test
 
     needs: build
 
