@@ -18,7 +18,7 @@ public class Compra {
 
     private Long idUsuario;
 
-    private Long idProduto;
+    private String idProduto;
 
     private Double preco;
 

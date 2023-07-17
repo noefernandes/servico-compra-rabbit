@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EstoqueRequest {
-    private Long idProduto;
+    private String idProduto;
     private Integer quantidade;
 }
