@@ -1,25 +1,18 @@
 package br.com.compra.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class PagamentoRequest {
     private String idCompra;
     private String numeroCartao;
     private String mes;
     private String ano;
+    private String cvv;
     private Integer numeroParcelas;
     private Double totalCompra;
-
-    public PagamentoRequest(String idCompra, String numeroCartao, String mes, String ano, Integer numeroParcelas,
-                            Double totalCompra) {
-        this.idCompra = idCompra;
-        this.numeroCartao = numeroCartao;
-        this.mes = mes;
-        this.ano = ano;
-        this.numeroParcelas = numeroParcelas;
-        this.totalCompra = totalCompra;
-    }
 }

@@ -53,8 +53,8 @@ public class CompraService {
 
         enviarNotificacao(PAGAMENTO_PENDENTE);
 
-        PagamentoRequest pagamentoRequest = new PagamentoRequest(compraSalva.getId(),"12345678910",
-                "06", "2028", compra.getNumeroParcelas(), compra.getTotalCompra());
+        PagamentoRequest pagamentoRequest = new PagamentoRequest(compraSalva.getId(),"1111222233334444",
+                "06", "2028", "501", compra.getNumeroParcelas(), compra.getTotalCompra());
         solicitarPagamento(pagamentoRequest);
 
         return compraSalva;
