@@ -73,7 +73,7 @@ public class CompraService {
 
     private void enviarNotificacao(String status) throws JsonProcessingException {
         NotificacaoRequest notificacaoRequest = new NotificacaoRequest();
-        notificacaoRequest.setEmail("nome@mail.com");
+        notificacaoRequest.setEmail("noepessoa@outlook.com");
 
         switch (status) {
             case PAGAMENTO_PENDENTE ->
