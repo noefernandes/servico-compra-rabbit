@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class NotificacaoRequest {
     private String email;
-    private String texto;
+    private String text;
 }

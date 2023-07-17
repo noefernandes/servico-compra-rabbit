@@ -77,9 +77,9 @@ public class CompraService {
 
         switch (status) {
             case PAGAMENTO_PENDENTE ->
-                notificacaoRequest.setTexto("Compra efetuada com sucesso. Aguardando pagamento.");
+                notificacaoRequest.setText("Compra efetuada com sucesso. Aguardando pagamento.");
             case PAGAMENTO_REALIZADO ->
-                notificacaoRequest.setTexto("Pagamento efetuado com sucesso.");
+                notificacaoRequest.setText("Pagamento efetuado com sucesso.");
             default -> {
             }
         }
