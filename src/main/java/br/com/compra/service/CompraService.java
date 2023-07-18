@@ -37,7 +37,7 @@ public class CompraService {
         estoqueRequest.setQuantidade(compra.getQuantidade());
 
         if(estoqueRequest.getQuantidade() < 1) {
-            throw new RuntimeException("Solicite uma quantidade de itens maior do que 0.");
+            throw new RuntimeException("Por favor, solicite uma quantidade de itens maior do que 0.");
         }
 
         EstoqueResponse estoqueResponse = acessarEstoque(estoqueRequest);
