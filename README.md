@@ -3,8 +3,8 @@
 Para realizar requisição a aplicação use o ip listado no application.properties na porta 3100.
 Por exemplo: http://{endereco_ip}:3100/health
 
-Para realizar uma requisição para testar o microsserviço de compra, tente mandar uma requisição para a url
-http://{endereco_ip}:3100/compra com uma requisição POST como a seguir:
+Para realizar uma requisição para testar o microsserviço de compra, tente mandar uma requisição POST para a url
+http://{endereco_ip}:3100/compra como a seguir:
 
 {
 	"idProduto": "14",
