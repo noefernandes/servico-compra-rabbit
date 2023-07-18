@@ -56,9 +56,9 @@ public class CompraService {
 
         enviarNotificacao(PAGAMENTO_PENDENTE);
 
-        PagamentoRequest pagamentoRequest = new PagamentoRequest(compraSalva.getId(),"1111222233334444",
+/*        PagamentoRequest pagamentoRequest = new PagamentoRequest(compraSalva.getId(),"1111222233334444",
                 "06", "2028", "501", compra.getNumeroParcelas(), compra.getTotalCompra());
-        solicitarPagamento(pagamentoRequest);
+        solicitarPagamento(pagamentoRequest);*/
 
         return compraSalva;
     }
@@ -109,7 +109,7 @@ public class CompraService {
             compra.setStatus(PAGAMENTO_REALIZADO);
             enviarNotificacao(PAGAMENTO_REALIZADO);
             compraRepository.save(compra);
-            System.out.println();
+            //System.out.println("Entrou");
         }
         System.out.println(pagamento);
 
