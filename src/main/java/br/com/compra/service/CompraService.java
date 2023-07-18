@@ -40,7 +40,10 @@ public class CompraService {
             throw new RuntimeException("Solicite uma quantidade de itens maior do que 0.");
         }
 
-        EstoqueResponse estoqueResponse = acessarEstoque(estoqueRequest);
+//        EstoqueResponse estoqueResponse = acessarEstoque(estoqueRequest);
+        EstoqueResponse estoqueResponse = new EstoqueResponse();
+        estoqueResponse.setQuantidade(45);
+        estoqueResponse.setPreco(13.50);
 
         if(estoqueResponse.getQuantidade() < estoqueRequest.getQuantidade()){
             throw new RuntimeException("O produto está faltando no estoque.");
