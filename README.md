@@ -12,6 +12,5 @@ http://{endereco_ip}:3100/compra com uma requisição POST como a seguir:
 	"preco": 193.99,
 	"totalCompra": 0.0,
 	"quantidade": 2,
-	"numeroParcelas": 3,
-  "seuemail@email.com"
+	"numeroParcelas": 3
 }
